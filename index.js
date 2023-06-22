@@ -8,16 +8,16 @@ const Animal = mongoose.model('Animal', new mongoose.Schema({
 
 const app = express()
 
-mongoose.connect('mongodb://mongoadmin:password@mongoserver:27017/myapp?authSource=admin')
+mongoose.connect('mongodb://mongoadmin:password@mongoserver:27017/mongoserver?authSource=admin')
 
 app.get('/', async (_req, res) => {
-  console.log('listando... chanchitos...')
+  console.log('listing... people...')
   const animales = await Animal.find();
   return res.send(animales)
 })
-app.get('/crear', async (_req, res) => {
-  console.log('creando...')
-  await Animal.create({ tipo: 'Chanchito', estado: 'Feliz' })
+app.get('/create', async (_req, res) => {
+  console.log('created...')
+  await Animal.create({ tipo: 'person', estado: 'life' })
   return res.send('ok')
 })
 
