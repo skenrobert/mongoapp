@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 
-const Animal = mongoose.model('Animal', new mongoose.Schema({
+const Person = mongoose.model('Person', new mongoose.Schema({
   tipo: String,
   estado: String,
 }))
@@ -12,12 +12,12 @@ mongoose.connect('mongodb://mongoadmin:password@mongoserver:27017/mongoserver?au
 
 app.get('/', async (_req, res) => {
   console.log('listing... people...')
-  const animales = await Animal.find();
-  return res.send(animales)
+  const people = await Person.find();
+  return res.send(people)
 })
 app.get('/create', async (_req, res) => {
   console.log('created...')
-  await Animal.create({ tipo: 'person', estado: 'life' })
+  await Person.create({ tipo: 'person', estado: 'life' })
   return res.send('ok')
 })
 
