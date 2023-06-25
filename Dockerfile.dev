@@ -1,10 +1,23 @@
 FROM node:18
 
-RUN npm i -g nodemon
 RUN mkdir -p /home/app
 
 WORKDIR /home/app
 
+COPY package.json /home/app
+
+RUN npm install
+RUN npm i -g nodemon
+
+#fail try solution is ready reinstall
+RUN npm install express
+
+# RUN npm cache clean --force
+
+COPY . /home/app
+
 EXPOSE 3000
 
-CMD ["nodemon", "index.js"]
+CMD [ "npm", "run", "start.dev" ]
+
+

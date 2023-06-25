@@ -1,17 +1,17 @@
 version: "3.9"
 services:
-  chanchito:
+  server_app:
     build: .
     ports:
       - "3000:3000"
     links:
-      - monguito
-  monguito:
+      - server_mongo
+  server_mongo:
     image: mongo
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=nico
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
       - mongo-data:/data/db
@@ -20,3 +20,5 @@ services:
 
 volumes:
   mongo-data:
+  # mysql-data:
+  # postgres-data:
